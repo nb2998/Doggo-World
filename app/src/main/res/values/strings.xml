@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dogs</string>
+    <string name="welcome_to_the_world_of_dogs">Welcome to the world of dogs!</string>
 </resources>
