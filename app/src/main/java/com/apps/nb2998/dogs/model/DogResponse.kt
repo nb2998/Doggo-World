@@ -1,6 +1,3 @@
 package com.apps.nb2998.dogs.model
 
-class DogResponse {
-    lateinit var status: String
-    lateinit var message: Array<String>
-}
+data class DogResponse(var status: String, var message: String)

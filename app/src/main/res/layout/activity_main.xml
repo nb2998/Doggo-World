@@ -15,18 +15,15 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginTop="15dp"
-            android:text="Search a dog breed" />
+            android:text="@string/search_a_dog_breed" />
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginLeft="36dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
             android:ems="10"
             android:text="">
@@ -35,10 +32,22 @@
         </AutoCompleteTextView>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:fontFamily="serif-monospace"
+        android:text="@string/some_popular_breeds"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recViewDogsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        android:padding="5dp"/>
+
 
 </LinearLayout>

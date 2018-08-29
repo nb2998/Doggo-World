@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dogBreeds" >
+        <item>akita</item>
+        <item>germanshepherd</item>
+        <item>collie</item>
+        <item>dane</item>
+        <item>otterhound</item>
+        <item>mountain</item>
+        <item>maltese</item>
+        <item>eskimo</item>
+        <item>bullterrier</item>
+        <item>borzoi</item>
+        <item>mexicanhairless</item>
+        <item>deerhound</item>
+        <item>appenzeller</item>
+        <item>corgi</item>
+        <item>shiba</item>
+    </string-array>
+</resources>

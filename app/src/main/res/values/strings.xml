@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Dogs</string>
     <string name="welcome_to_the_world_of_dogs">Welcome to the world of dogs!</string>
+    <string name="search_a_dog_breed">Search a dog breed</string>
+    <string name="some_popular_breeds">Some popular breeds</string>
 </resources>
