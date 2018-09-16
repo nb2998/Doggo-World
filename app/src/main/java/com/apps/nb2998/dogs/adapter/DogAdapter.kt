@@ -3,6 +3,7 @@ package com.apps.nb2998.dogs.adapter
 import android.content.Context
 import android.net.Uri
 import android.os.Handler
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.apps.nb2998.dogs.model.Dog
 import com.apps.nb2998.dogs.model.DogResponse
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.dog_description_dialog.view.*
 import kotlinx.android.synthetic.main.single_row.view.*
 import okhttp3.*
 import java.io.IOException
@@ -35,10 +37,17 @@ class DogAdapter(private val dogList: MutableList<String>, private val context: 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         with(holder.itemView) {
             tvDogName.text = dogList[position].toUpperCase()
-            Log.d("tag", dogList[position])
-            fetchAndDisplayImage(dogList[position], ivDogPic)
-        }
+//            fetchAndDisplayImage(dogList[position], ivDogPic)  // this keeps generating random images!
 
+            cardViewDogBreed.setOnClickListener {
+                val dialogBuilder = AlertDialog.Builder(context)
+                val dialogView = LayoutInflater.from(context).inflate(R.layout.dog_description_dialog, null)
+                dialogBuilder.setView(dialogView)
+                dialogView.tvDogBreed.text = dogList[position].toUpperCase()
+                fetchAndDisplayImage(dogList[position], dialogView.ivDogPic, dialogBuilder)
+                dialogBuilder.create().show()
+            }
+        }
     }
 
     override fun getItemId(position: Int): Long {
@@ -52,7 +61,7 @@ class DogAdapter(private val dogList: MutableList<String>, private val context: 
 
     class DogViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
 
-    private fun fetchAndDisplayImage(dogName: String, ivDogPic: ImageView) {
+    private fun fetchAndDisplayImage(dogName: String, ivDogPic: ImageView, dialogBuilder: AlertDialog.Builder) {
         val baseUrl = "https://dog.ceo/api/breed/$dogName/images/random"
         val okHttpClient = OkHttpClient()
         val request = Request.Builder()
@@ -68,16 +77,12 @@ class DogAdapter(private val dogList: MutableList<String>, private val context: 
                         val gson = Gson()
                         val result = response.body()?.string()
                         val dogResponse: DogResponse? = gson.fromJson(result, DogResponse::class.java)
-//                        Log.d("tag", dogResponse!!.status)
                         if (dogResponse != null && dogResponse.status == "success") {
-                            Log.d("tag", "not null")
 
                             val handler = Handler(context.mainLooper)
                             val runnable = Runnable {
                                 Picasso.get()
                                         .load(Uri.parse(dogResponse.message))
-//                                    .resize(50, 50)
-//                                    .centerCrop()
                                         .placeholder(R.drawable.shiba)
                                         .into(ivDogPic)
                             }

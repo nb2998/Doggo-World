@@ -29,32 +29,8 @@ class MainActivity : AppCompatActivity() {
         autoCompleteTextView.setAdapter(arrayAdapter)
 
         dogAdapter = DogAdapter(arr.toMutableList(), this)
-        recViewDogsList.layoutManager = GridLayoutManager(this, 3)
-//        recViewDogsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//        recViewDogsList.layoutManager = GridLayoutManager(this, 3)
+        recViewDogsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recViewDogsList.adapter = dogAdapter
-    }
-
-    private fun fetchListOfDogs() {
-        val baseUrl = "https://dog.ceo/api/breeds/list/all"
-        val okHttpClient = OkHttpClient()
-        val request = Request.Builder()
-                .url(baseUrl)
-                .build()
-        okHttpClient.newCall(request)
-                .enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        val gson = Gson()
-                        val result = response.body()?.string()
-                        val dog: DogResponse? = gson.fromJson(result, DogResponse::class.java)
-
-                        if(dog!=null){
-
-                        }
-                    }
-                })
     }
 }
