@@ -1,17 +1,11 @@
 package com.apps.nb2998.dogs
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import com.apps.nb2998.dogs.adapter.DogAdapter
-import com.apps.nb2998.dogs.model.Dog
-import com.apps.nb2998.dogs.model.DogResponse
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.*
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,5 +26,13 @@ class MainActivity : AppCompatActivity() {
 //        recViewDogsList.layoutManager = GridLayoutManager(this, 3)
         recViewDogsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recViewDogsList.adapter = dogAdapter
+
+        btnSearch.setOnClickListener{
+            searchAndDisplay(autoCompleteTextView.text.toString())
+        }
+    }
+
+    private fun searchAndDisplay(dogBreed: String) {
+        UtilFunctions.createDogDescriptionDialog(this, dogBreed)
     }
 }

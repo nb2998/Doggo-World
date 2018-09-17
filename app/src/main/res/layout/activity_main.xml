@@ -25,11 +25,23 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
-            android:ems="10"
+            android:ems="8"
             android:text=""
             android:windowSoftInputMode="stateAlwaysHidden">
 
         </AutoCompleteTextView>
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="Search"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginLeft="3dp"/>
     </LinearLayout>
 
     <TextView
