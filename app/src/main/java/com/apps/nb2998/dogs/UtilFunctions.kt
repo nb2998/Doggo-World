@@ -9,14 +9,16 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import com.apps.nb2998.dogs.model.DogResponse
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dog_description_dialog.view.*
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class UtilFunctions {
     companion object {
-        fun createDogDescriptionDialog(context: Context, dogName: String){
+        fun createDogDescriptionDialog(context: Context, dogName: String) {
             val dialogBuilder = AlertDialog.Builder(context)
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dog_description_dialog, null)
             dialogBuilder.setView(dialogView)
@@ -54,6 +56,24 @@ class UtilFunctions {
                             }
                         }
                     })
+        }
+
+        fun fetchList(): List<String> {
+            val list = mutableListOf<String>()
+            val url = "https://dog.ceo/api/breeds/list/all"
+            val okHttpClient = OkHttpClient()
+            val request = Request.Builder().url(url).build()
+            okHttpClient.newCall(request).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    val jsonObject = JSONObject(response)
+                }
+
+            })
+            return list
         }
     }
 }
